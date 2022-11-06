@@ -1,7 +1,6 @@
 const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
 const greetingHeader = document.querySelector("#greeting");
-// const logoutButton = document.querySelector("#logoutBtn");
 const logoutForm = document.querySelector("#logout-form");
 const USERNAME_KEY = "username";
 const HIDDEN_CLASSNAME = "hidden";
@@ -23,17 +22,17 @@ const onLoginSubmit = (event) => {
     paintGreetings(username);
 }
 
-loginForm.addEventListener("submit", onLoginSubmit);
-
 /****************************
  * Remember username after initial submission
+ * Load correct page layout (forms, buttons, input) based on existence of username
+ * loginForm,loginInput,greetingHeader,logoutForm all start off as hidden from page
  ****************************/ 
 const savedUsername = localStorage.getItem(USERNAME_KEY);
 
 if (savedUsername === null) {
     // show login form
     loginForm.classList.remove(HIDDEN_CLASSNAME);
-    // loginForm.addEventListener("submit", onLoginSubmit); // is this necessary tho?
+    loginForm.addEventListener("submit", onLoginSubmit);
 } else {
     // show greetings
     paintGreetings(savedUsername);
