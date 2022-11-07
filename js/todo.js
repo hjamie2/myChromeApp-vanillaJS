@@ -9,12 +9,20 @@ const onTodoFormSubmit = (event) => {
     paintTodo(newTodo);
 }
 
+const onDeleteBtnClick = (event) => {
+    const li = event.target.parentElement;
+    li.remove();
+}
+
 const paintTodo = (todoItem) => {
     const liElement = document.createElement("li");
     const spanElement = document.createElement("span");
-    liElement.append(spanElement);
     spanElement.innerText = todoItem;
-    todoList.appendChild(liElement);
+    const buttonElement = document.createElement("button");
+    buttonElement.innerText = "❌";
+    buttonElement.addEventListener("click", onDeleteBtnClick);
+    liElement.append(spanElement, buttonElement);
+    todoList.append(liElement);
 }
 
 todoForm.addEventListener("submit", onTodoFormSubmit);
