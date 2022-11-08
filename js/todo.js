@@ -1,8 +1,9 @@
 const todoForm = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#todo-form input");
 const todoList = document.querySelector("#todo-list");
+const TODOS_KEY = "todos";
 
-const todosArray = [];
+let todosArray = [];
 
 const paintTodo = (todoItem) => {
     const liElement = document.createElement("li");
@@ -21,7 +22,7 @@ const onDeleteBtnClick = (event) => {
 }
 
 const saveTodos = () => {
-    localStorage.setItem("todos", JSON.stringify(todosArray));
+    localStorage.setItem(TODOS_KEY, JSON.stringify(todosArray));
 }
 
 const onTodoFormSubmit = (event) => {
@@ -34,3 +35,14 @@ const onTodoFormSubmit = (event) => {
 }
 
 todoForm.addEventListener("submit", onTodoFormSubmit);
+
+/*********************************
+ * Load saved todos on page as list
+ *********************************/
+const savedTodos = localStorage.getItem(TODOS_KEY);
+
+if (savedTodos) {
+    const parsedSavedTodos = JSON.parse(savedTodos);
+    todosArray = parsedSavedTodos;
+    parsedSavedTodos.forEach(paintTodo);
+}
