@@ -5,10 +5,11 @@ const TODOS_KEY = "todos";
 
 let todosArray = [];
 
-const paintTodo = (todoItem) => {
+const paintTodo = (todoObj) => {
     const liElement = document.createElement("li");
+    liElement.id = todoObj.id;
     const spanElement = document.createElement("span");
-    spanElement.innerText = todoItem;
+    spanElement.innerText = todoObj.text;
     const buttonElement = document.createElement("button");
     buttonElement.innerText = "❌";
     buttonElement.addEventListener("click", onDeleteBtnClick);
@@ -19,6 +20,10 @@ const paintTodo = (todoItem) => {
 const onDeleteBtnClick = (event) => {
     const li = event.target.parentElement;
     li.remove();
+    todosArray = todosArray.filter((obj) => {
+        return obj.id !== parseInt(li.id);
+    });
+    saveTodos();
 }
 
 const saveTodos = () => {
@@ -28,9 +33,13 @@ const saveTodos = () => {
 const onTodoFormSubmit = (event) => {
     event.preventDefault();
     const newTodo = todoInput.value;
-    todosArray.push(newTodo);
     todoInput.value = "";
-    paintTodo(newTodo);
+    const newTodoObj = {
+        text: newTodo,
+        id: Date.now(),
+    };
+    todosArray.push(newTodoObj);
+    paintTodo(newTodoObj);
     saveTodos();
 }
 
