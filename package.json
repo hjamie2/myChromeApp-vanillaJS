@@ -1,0 +1,19 @@
+{
+  "name": "mychromeapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hjamie2/myChromeApp-vanillaJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hjamie2/myChromeApp-vanillaJS/issues"
+  },
+  "homepage": "https://github.com/hjamie2/myChromeApp-vanillaJS#readme"
+}
